@@ -1,0 +1,29 @@
+name: parallel-jobs
+on:
+  push:
+
+jobs:
+  edge:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "Edge"
+  runtime:
+    needs: edge
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "Runtime"
+  go:
+    needs: edge
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "Go"
+  jdk:
+    needs: edge
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "JDK"
+  jre:
+    needs: runtime
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "JRE"
